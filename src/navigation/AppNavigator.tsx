@@ -1,10 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Plus, Grid } from 'lucide-react-native';
+import { Plus, Grid, Lightbulb } from 'lucide-react-native';
 import { Platform, StyleSheet, View } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { CreationLabScreen } from '../screens/CreationLabScreen';
 import { VaultScreen } from '../screens/VaultScreen';
+import { IdeationScreen } from '../screens/IdeationScreen';
 import { COLORS, SPACING } from '../constants/theme';
 
 const Tab = createBottomTabNavigator();
@@ -25,6 +26,17 @@ export const AppNavigator = () => {
         },
       }}
     >
+      <Tab.Screen 
+        name="Ideation" 
+        component={IdeationScreen}
+        options={{
+          tabBarIcon: ({ color, focused }) => (
+            <View style={[styles.iconContainer, focused && styles.activeIcon]}>
+              <Lightbulb color={focused ? COLORS.black : color} strokeWidth={2} size={24} />
+            </View>
+          ),
+        }}
+      />
       <Tab.Screen 
         name="CreationLab" 
         component={CreationLabScreen}
